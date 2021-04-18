@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<h2>CREATE BUG</h2>
+<div class="container">
+  <form class = "form-horizontal">
+  <div class="row">
+    <div class="col-sm">
+      <label>Bug ID:</label>
+      <input [(ngModel)]="bug.id" class = "form-control"/>
+      <br />
+      <label>Bug Name:</label>
+      <input [(ngModel)]="bug.name" class = "form-control"/>
+      <br />
+      <label>Bug Priority: </label>
+      <select [(ngModel)]="bug.priority" name="priority" id="priority" class = "form-control">
+        <option>LOW</option>
+        <option>MEDIUM</option>
+        <option>HIGH</option>
+      </select>
+      <br />
+      <label>Module</label>
+      <input [(ngModel)]="bug.module" class = "form-control"/>
+      <br />
+      <label>Bug Type:</label>
+      <select [(ngModel)]="bug.type" name="type" id="type" class = "form-control">
+        <option>LOGICAL</option>
+        <option>SYNTAX</option>
+        <option>API</option>
+        <option>GUI</option>
+        <option>RUNTIME</option>
+      </select>
+      <br />
+      <label>Bug Status:</label>
+      <select [(ngModel)]="bug.status" name="type" id="type" class = "form-control">
+        <option>NEW</option>
+        <option>ASSIGNED</option>
+        <option>OPEN</option>
+        <option>FIXED</option>
+        <option>PENDING_RETEST</option>
+        <option>RETEST</option>
+        <option>REOPEN</option>
+        <option>VERIFIED</option>
+        <option>CLOSED</option>
+        <option>REJECTED</option>
+        <option>DUPLICATE</option>
+        <option>DEFERRED</option>
+        <option>NOT_A_BUG</option>
+        <option>COULD_NOT_REPRODUCE</option>
+        <option>WONT_FIX</option>
+        <option>NEED_MORE_INFO</option>
+      </select>
+      <br />
+      <label>Submitted On:</label>
+      <input [(ngModel)]="bug.submittedOn" type="date" class = "form-control"/>
+      <br />
+    </div>
+
+    <div class="col-sm">
+      <label>Build Version:</label>
+      <input [(ngModel)]="bug.buildVersion" class = "form-control"/>
+      <br />
+      <label>Severity:</label>
+      <select [(ngModel)]="bug.severity" name="severity" id="severity" class = "form-control">
+        <option>LOW</option>
+        <option>MINOR</option>
+        <option>MAJOR</option>
+        <option>CRITICAL</option>
+        <option>BLOCKER</option>
+      </select>
+      <br />
+      <label>Project ID:</label>
+      <input [(ngModel)]="bug.projectId" class = "form-control"/>
+      <br />
+      <label>Developer ID:</label>
+      <input [(ngModel)]="bug.developerId" class = "form-control"/>
+      <br />
+      <label>Tester ID:</label>
+      <input [(ngModel)]="bug.testerId" class = "form-control"/>
+      <br />
+      <label>Synopsis:</label>
+      <textarea
+        [(ngModel)]="bug.synopsis"
+        name="synopsis"
+        id="synopsis"
+        rows="2"
+        cols="30"
+        class = "form-control"
+      ></textarea>
+      <br />
+      <label>Description</label>
+      <textarea
+        [(ngModel)]="bug.description"
+        name="description"
+        id="description"
+        rows="3"
+        cols="30"
+        class = "form-control"
+      ></textarea>
+    </div>
+  </div>
+</form>
+<br>
+<button class = "btn btn-outline-success">CREATE BUG</button>
+</div>
