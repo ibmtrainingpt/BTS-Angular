@@ -1,0 +1,39 @@
+h2{
+  text-align: center;
+  margin:30px;
+  text-decoration: underline;
+}
+
+div{
+  text-align: left;
+}
+
+button{
+  background-color: white;
+}
+
+.container{
+  text-align: center;
+
+}
+
+table{
+  align-self: center;
+  border-collapse: collapse;
+  width:100;
+  border: 1px solid black;
+}
+
+th, td{
+  text-align: left;
+  padding: 2px;
+  border: 1px solid black;
+}
+
+tr:nth-child(odd){
+  background-color: lightblue;
+}
+
+tr,td:hover{
+  background-color: skyblue;
+}

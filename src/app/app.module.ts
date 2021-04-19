@@ -4,15 +4,22 @@ import {FormsModule} from '@angular/forms'
 import { AppComponent } from './app.component';
 import { BugComponent } from './bug/bug.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import {HttpClientModule} from '@angular/common/http';
+import { SearchbugComponent } from './searchbug/searchbug.component'
+import {RouterModule} from '@angular/router'
 
 @NgModule({
   declarations: [
     AppComponent,
-    BugComponent
+    BugComponent,
+    SearchbugComponent
   ],
   imports: [
-    BrowserModule, FormsModule, BrowserAnimationsModule
+    BrowserModule, RouterModule.forRoot([
+      {path: 'create', component: BugComponent},
+      {path: 'search', component: SearchbugComponent},
+      {path: '', redirectTo: '/search', pathMatch: 'full'},
+    ]), FormsModule, BrowserAnimationsModule, HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

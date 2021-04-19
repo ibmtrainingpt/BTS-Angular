@@ -1,0 +1,112 @@
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+  
+.row.content {
+      height: 450px
+}
+
+.sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 100%;
+}
+  
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+  
+@media screen and (max-width: 767px) {
+    .sidenav {
+      height: auto;
+      padding: 15px;
+    }
+    .row.content {height:auto;} 
+}
+
+p{
+    text-align: justify;
+}
+
+img{
+    height: 100px;
+    width: 150px;
+}
+
+.well{
+    background-color: white;
+    align-content: center;
+    padding: 2px;
+}
+
+#logo{
+    height: 35px;
+    width: 180px;
+}
+
+.jumbotron{
+    margin-top: 10px;
+}
+
+.buttonStyling{
+    border-color: #008CBA;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.buttonStyling:hover {
+    background-color: #008CBA;
+    color: white;
+  }
+
+#updateDetails{
+    visibility: hidden;
+}
+
+.submitButton{
+    width:50%;
+    align-self:center;
+    padding: 10px;
+    border-color: seagreen;
+}
+.submitButton:hover {
+    background-color: seagreen;
+    color: white;
+  }
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+
+label{
+    display:inline-block;
+    width:200px;
+    margin-right:5px;
+    text-align:left;
+    }
+    
+input{
+    margin-bottom: 15px;
+    }
+    
+    fieldset{
+    border:none;
+    width:500px;
+    margin:0px auto;
+    }
+
+#column1,#column2,body{
+    background-color: silver;
+}
+
+#bugDetails{
+    visibility: hidden;   
+}
+
+/* #updateBugDetails{
+    visibility: hidden;
+} */

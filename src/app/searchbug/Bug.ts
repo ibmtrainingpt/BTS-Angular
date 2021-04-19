@@ -6,7 +6,7 @@ export class Bug{
   module: String;
   type: TYPE;
   status: STATUS;
-  eta: Date;
+  submittedOn: Date;
   buildVersion: String;
   severity: SEVERITY;
   developerId: String;
