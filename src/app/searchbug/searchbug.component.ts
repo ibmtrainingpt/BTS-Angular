@@ -57,6 +57,9 @@ export class SearchbugComponent implements OnInit {
     const remainingCharacters = <HTMLInputElement>(
       document.getElementById('charName')
     );
+    const divTag = document.getElementById("text");
+    divTag.style.visibility = "visible";
+    remainingCharacters.style.visibility = "visible";
     length = this.bug.name.length;
     length = this.maxLength - length;
     remainingCharacters.textContent = length.toString();

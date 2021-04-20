@@ -42,8 +42,7 @@
             maxlength="20"
             (keyup)="this.valueCheck()"
           />
-          <span id="charName">20</span><i> characters remaining</i>
-          <br />
+          <div id = "text"><span id="charName">20</span><i> characters remaining</i></div>
           <br />
           <button class="submitButton" (click)="this.getBugsByName(bug.name)">
             SEARCH BUG
@@ -81,6 +80,7 @@
             <option>WONT_FIX</option>
             <option>NEED_MORE_INFO</option>
           </select>
+          <br />
           <br />
           <button
             class="submitButton"

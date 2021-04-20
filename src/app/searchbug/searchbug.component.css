@@ -37,3 +37,8 @@ tr:nth-child(odd){
 tr,td:hover{
   background-color: skyblue;
 }
+
+#text, #charName{
+  font-style: italic;
+  visibility: hidden;
+}
