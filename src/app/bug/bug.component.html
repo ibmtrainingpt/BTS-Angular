@@ -13,31 +13,20 @@
       <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav">
 
-              <li ><a href="index.html">Home</a></li>
-
-              <li class="active"><a href="searchbug.html">Bugs</a></li>
-              <li><a href="searchproject.html">Projects</a></li>
-              <li><a href="searchemployee.html">Employees</a></li>
-              <li><a href="contactUs.html">Contact Us</a></li>
+              <li class="active"><a routerLink="/create">Create Bug</a></li>
+              <li><a routerLink="/search">Search Bug</a></li>
+              <li><a>Update Bug</a></li>
           </ul>
       </div>
   </div>
 </nav>
 
 <div class="container-fluid text-center" style="background-color: #f8f9fa;">
-  <div class="row content">
-      <div class="col-sm-2 sidenav">
-          <button class="btn btn-link" routerLink="/create" style="background-color: #f1f1f1;">Create Bug</button>
-          <button class="buttonStyling" routerLink="/search">Search Bug</button>
-          <button class="buttonStyling">Update Bug</button>
-      </div>
+  <div class="row content" style = "text-align: center;">
       <div id="bugDetails" style="background-color: #f8f9fa;">
-          <form class="form-inline">
-              <div class="col-sm-10 text-left" id="column1" style="background-color: #f8f9fa;">
+          <form class="form-horizontal">
+              <div class="col-sm-12 text-left" id="column1" style="background-color: #f8f9fa;">
                   <div id="bugFields" class="column form-group">
-                    <label>Bug ID:</label>
-                    <input [(ngModel)]="bug.id" class = "form-control" name = "id"/>
-                    <br />
                     <label>Bug Name:</label>
                     <input [(ngModel)]="bug.name" class = "form-control" name = "name"/>
                     <br />
@@ -89,7 +78,6 @@
                   </div>
 
                   <div class="column form-group" id="column2" style="background-color: #f8f9fa;">
-
                     <label>Severity:</label>
                     <select [(ngModel)]="bug.severity" name="severity" id="severity" class = "form-control" name = "severity">
                       <option>LOW</option>
@@ -123,7 +111,7 @@
                       [(ngModel)]="bug.description"
                       name="description"
                       id="description"
-                      rows="3"
+                      rows="4"
                       cols="30"
                       class = "form-control"
                     ></textarea>
