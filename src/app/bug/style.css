@@ -148,3 +148,12 @@ input{
   from {bottom: 20px; opacity: 1;}
   to {bottom: 0; opacity: 0;}
 }
+
+#bugFields{
+  margin-right: 2px;
+  margin-top: 15px;
+}
+
+#column2{
+  margin-top: 15px;
+}

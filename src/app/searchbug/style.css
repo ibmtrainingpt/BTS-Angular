@@ -2,7 +2,7 @@
     margin-bottom: 0;
     border-radius: 0;
 }
-  
+
 .row.content {
       height: 450px
 }
@@ -12,19 +12,19 @@
     background-color: #f1f1f1;
     height: 100%;
 }
-  
+
 footer {
     background-color: #555;
     color: white;
     padding: 15px;
 }
-  
+
 @media screen and (max-width: 767px) {
     .sidenav {
       height: auto;
       padding: 15px;
     }
-    .row.content {height:auto;} 
+    .row.content {height:auto;}
 }
 
 p{
@@ -88,11 +88,8 @@ label{
     margin-right:5px;
     text-align:left;
     }
-    
-input{
-    margin-bottom: 15px;
-    }
-    
+
+
     fieldset{
     border:none;
     width:500px;
@@ -103,10 +100,11 @@ input{
     background-color: silver;
 }
 
-#bugDetails{
-    visibility: hidden;   
+table{
+  align-self: center;
+  width:100%;
 }
 
-/* #updateBugDetails{
-    visibility: hidden;
-} */
+th,td{
+  padding:2px;
+}

@@ -12,133 +12,106 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="index.html">
-        <img [src] = "ImgPath" alt="Image" id="logo" />
+        <img [src]="ImgPath" alt="Image" id="logo" />
       </a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="index.html">Home</a></li>
-        <li class="active"><a href="searchbug.html">Bugs</a></li>
-        <li><a href="searchproject.html">Projects</a></li>
-        <li><a href="searchemployee.html">Employees</a></li>
-        <li><a href="contactUs.html">Contact Us</a></li>
+        <li><a routerLink="/create">Create Bug</a></li>
+        <li class="active"><a routerLink="/search">Search Bug</a></li>
+        <li><a>Update Bug</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
 <div class="container-fluid text-center" style="background-color: #f8f9fa">
-  <div class="row content">
-    <div class="col-sm-2 sidenav">
-      <br />
+  <div class="row content" style="text-align: center">
+    <div id="bugDetails" style="background-color: #f8f9fa">
 
-      <button class="buttonStyling" routerLink="/create">Create Bug</button>
-      <button class="btn btn-link" routerLink="/search" style="background-color: #f1f1f1;">Search Bug</button>
-      <button class="buttonStyling">Update Bug</button>
-    </div>
-
-    <div
-      id="search"
-      class="col-sm-8 bg-light text-dark"
-      style="background-color: #f8f9fa"
-    >
-      <div class="container">
-        <br />
-        <div class="row justify-content-center">
-          <div class="col-1 col-md-1 col-lg-1"></div>
-          <div class="col-8 col-md-6 col-lg-6">
-            <div class="card-body row no-gutters align-items-center">
-              <div class="col-auto">
-                <i class="fas fa-search h4 text-body"></i>
-              </div>
-              <!--end of col-->
-              <div class="col-auto">
-                <label>Enter Bug Name:</label>
-                <input
-                  [(ngModel)]="bug.name"
-                  class="form-control"
-                  name="name"
-                />
-                <br />
-                <button
-                  class="submitButton"
-                  (click)="this.getBugsByName(bug.name)"
-                >
-                  SEARCH BUG
-                </button>
-                <br>
-              </div>
-<br>
-              <div class="col-auto">
-                <label>Select Status:</label>
-                <select
-                  [(ngModel)]="bug.status"
-                  name="status"
-                  id="status"
-                  class="form-control"
-                >
-                  <option>NEW</option>
-                  <option>ASSIGNED</option>
-                  <option>OPEN</option>
-                  <option>FIXED</option>
-                  <option>PENDING_RETEST</option>
-                  <option>RETEST</option>
-                  <option>REOPEN</option>
-                  <option>VERIFIED</option>
-                  <option>CLOSED</option>
-                  <option>REJECTED</option>
-                  <option>DUPLICATE</option>
-                  <option>DEFERRED</option>
-                  <option>NOT_A_BUG</option>
-                  <option>COULD_NOT_REPRODUCE</option>
-                  <option>WONT_FIX</option>
-                  <option>NEED_MORE_INFO</option>
-                </select>
-                <br />
-                <button
-                  class="submitButton"
-                  (click)="this.getBugsByStatus(bug.status)"
-                >
-                  SEARCH BUG
-                </button>
-              </div>
-            </div>
-          </div>
+      <div
+        class="col-sm-12 text-left"
+        id="column1"
+        style="background-color: #f8f9fa"
+      >
+        <div id="bugFields" class="column form-group">
+          <label>Enter Bug Name:</label>
+          <input [(ngModel)]="bug.name" class="form-control" name="name" />
+          <br />
+          <button class="submitButton" (click)="this.getBugsByName(bug.name)">
+            SEARCH BUG
+          </button>
+          <br />
         </div>
-      </div>
-<br>
-      <div id="updateFields" >
-        <div id="showbugdata">
-          <table>
-            <thead>
-              <td>ID</td>
-              <td>Name</td>
-              <td>Priority</td>
-              <td>Module</td>
-              <td>Type</td>
-              <td>Status</td>
-              <td>Build Version</td>
-              <td>Severity</td>
-              <td>Synopsis</td>
-              <td>Description</td>
-            </thead>
-            <tbody>
-              <tr *ngFor="let bug of bugArray">
-                <td>{{ bug.id }}</td>
-                <td>{{ bug.name }}</td>
-                <td>{{ bug.priority }}</td>
-                <td>{{ bug.module }}</td>
-                <td>{{ bug.type }}</td>
-                <td>{{ bug.status }}</td>
-                <td>{{ bug.buildVersion }}</td>
-                <td>{{ bug.severity }}</td>
-                <td>{{ bug.synopsis }}</td>
-                <td>{{ bug.description }}</td>
-              </tr>
-            </tbody>
-          </table>
+
+        <div
+          class="column form-group"
+          id="column2"
+          style="background-color: #f8f9fa"
+        >
+          <label>Select Status:</label>
+          <select
+            [(ngModel)]="bug.status"
+            name="status"
+            id="status"
+            class="form-control"
+          >
+            <option>NEW</option>
+            <option>ASSIGNED</option>
+            <option>OPEN</option>
+            <option>FIXED</option>
+            <option>PENDING_RETEST</option>
+            <option>RETEST</option>
+            <option>REOPEN</option>
+            <option>VERIFIED</option>
+            <option>CLOSED</option>
+            <option>REJECTED</option>
+            <option>DUPLICATE</option>
+            <option>DEFERRED</option>
+            <option>NOT_A_BUG</option>
+            <option>COULD_NOT_REPRODUCE</option>
+            <option>WONT_FIX</option>
+            <option>NEED_MORE_INFO</option>
+          </select>
+          <br />
+          <button
+            class="submitButton"
+            (click)="this.getBugsByStatus(bug.status)"
+          >
+            SEARCH BUG
+          </button>
         </div>
       </div>
     </div>
+    <br />
+<div id="updateFields">
+  <div id="showBugData">
+    <table class="table table-bordered">
+      <thead>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Priority</td>
+        <td>Module</td>
+        <td>Type</td>
+        <td>Status</td>
+        <td>Build Version</td>
+        <td>Severity</td>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bug of bugArray">
+          <td>{{ bug.id }}</td>
+          <td>{{ bug.name }}</td>
+          <td>{{ bug.priority }}</td>
+          <td>{{ bug.module }}</td>
+          <td>{{ bug.type }}</td>
+          <td>{{ bug.status }}</td>
+          <td>{{ bug.buildVersion }}</td>
+          <td>{{ bug.severity }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
+  </div>
+</div>
+
