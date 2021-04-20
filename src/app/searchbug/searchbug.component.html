@@ -42,7 +42,9 @@
             maxlength="20"
             (keyup)="this.valueCheck()"
           />
-          <div id = "text"><span id="charName">20</span><i> characters remaining</i></div>
+          <div id="text">
+            <span id="charName">20</span><i> characters remaining</i>
+          </div>
           <br />
           <button class="submitButton" (click)="this.getBugsByName(bug.name)">
             SEARCH BUG
@@ -100,6 +102,7 @@
             <td><b>Name</b></td>
             <td><b>Priority</b></td>
             <td><b>Module</b></td>
+            <td><b>ETA</b></td>
             <td><b>Type</b></td>
             <td><b>Status</b></td>
             <td><b>Build Version</b></td>
@@ -109,12 +112,13 @@
             <tr *ngFor="let bug of bugArray">
               <td>{{ bug.id }}</td>
               <td>{{ bug.name }}</td>
-              <td>{{ bug.priority }}</td>
+              <td>{{ bug.priority | titlecase }}</td>
               <td>{{ bug.module }}</td>
+              <td>{{ bug.eta | date }}</td>
               <td>{{ bug.type }}</td>
-              <td>{{ bug.status }}</td>
+              <td>{{ bug.status | titlecase }}</td>
               <td>{{ bug.buildVersion }}</td>
-              <td>{{ bug.severity }}</td>
+              <td>{{ bug.severity | titlecase }}</td>
             </tr>
           </tbody>
         </table>

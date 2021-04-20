@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Bug } from '../bug/Bug';
+import { Bug } from '../Bug';
 import { BugService } from '../bugService';
 
 @Component({
@@ -15,7 +15,8 @@ export class SearchbugComponent implements OnInit {
   bugArray: any;
   maxLength = 20;
 
-  getBugsByName(name: String) {   //method to retrieve bugs by name
+  getBugsByName(name: String) {
+    //method to retrieve bugs by name
     if (name) {
       if (name.trim()) {
         const observable = this.bugService.getBugsByName(name);
@@ -36,7 +37,8 @@ export class SearchbugComponent implements OnInit {
     }
   }
 
-  getBugsByStatus(status: any) {    //method to retrieve bugs by status
+  getBugsByStatus(status: any) {
+    //method to retrieve bugs by status
     if (status) {
       const observable = this.bugService.getBugsByStatus(status);
       observable.subscribe(
@@ -53,13 +55,14 @@ export class SearchbugComponent implements OnInit {
     }
   }
 
-  valueCheck() {    //method to keep check on characters remaining
+  valueCheck() {
+    //method to keep check on characters remaining
     const remainingCharacters = <HTMLInputElement>(
       document.getElementById('charName')
     );
-    const divTag = document.getElementById("text");
-    divTag.style.visibility = "visible";
-    remainingCharacters.style.visibility = "visible";
+    const divTag = document.getElementById('text');
+    divTag.style.visibility = 'visible';
+    remainingCharacters.style.visibility = 'visible';
     length = this.bug.name.length;
     length = this.maxLength - length;
     remainingCharacters.textContent = length.toString();

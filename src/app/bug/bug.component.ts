@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Bug } from './Bug';
+import { Bug } from '../Bug';
 import { BugService } from '../bugService';
 
 @Component({
@@ -16,7 +16,7 @@ export class BugComponent implements OnInit {
   maxLengthSynopsis = 50;
   maxLengthDescription = 200;
 
-  create() {
+  create() {        //method to create bug
     this.validate();
     console.log(this.bug.name);
     const promise = this.bugService.create(this.bug);
@@ -29,13 +29,13 @@ export class BugComponent implements OnInit {
         this.bug = new Bug();
       },
       (error) => {
-        console.log(error);
+        alert(error.headers.get('error'));
         alert('Error occurred!');
       }
     );
   }
 
-  validate() {
+  validate() {    //method for validation
     let errorText = '';
     if (this.bug.name) {
       if (this.bug.name.trim()) {
@@ -82,24 +82,19 @@ export class BugComponent implements OnInit {
     } else {
       errorText += 'Please enter Project ID. \n';
     }
-    if (!this.bug.synopsis || this.bug.synopsis.trim()) {
-      errorText += 'Please enter severity . \n';
-    }
 
-    if (!this.bug.description || this.bug.description.trim()) {
-      errorText += 'Please enter description . \n';
+    if (errorText != null) {
+      alert('Errors are : \n' + errorText);
     }
-
-    alert('Errors are : \n' + errorText);
   }
 
   valueCheckSynopsis() {
     const remainingCharactersSynopsis = <HTMLTextAreaElement>(
       document.getElementById('charSynopsis')
     );
-    const divTag = document.getElementById("text");
-    remainingCharactersSynopsis.style.visibility = "visible";
-    divTag.style.visibility = "visible";
+    const divTag = document.getElementById('text1');
+    remainingCharactersSynopsis.style.visibility = 'visible';
+    divTag.style.visibility = 'visible';
     length = this.bug.synopsis.length;
     length = this.maxLengthSynopsis - length;
     remainingCharactersSynopsis.textContent = length.toString();
@@ -109,9 +104,9 @@ export class BugComponent implements OnInit {
     const remainingCharactersDescription = <HTMLTextAreaElement>(
       document.getElementById('charDescription')
     );
-    const divTag = document.getElementById("text");
-    divTag.style.visibility = "visible";
-    remainingCharactersDescription.style.visibility = "visible";
+    const divTag = document.getElementById('text2');
+    remainingCharactersDescription.style.visibility = 'visible';
+    divTag.style.visibility = 'visible';
     length = this.bug.description.length;
     length = this.maxLengthDescription - length;
     remainingCharactersDescription.textContent = length.toString();
