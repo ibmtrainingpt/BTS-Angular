@@ -28,7 +28,6 @@
 <div class="container-fluid text-center" style="background-color: #f8f9fa">
   <div class="row content" style="text-align: center">
     <div id="bugDetails" style="background-color: #f8f9fa">
-
       <div
         class="col-sm-12 text-left"
         id="column1"
@@ -36,11 +35,20 @@
       >
         <div id="bugFields" class="column form-group">
           <label>Enter Bug Name:</label>
-          <input [(ngModel)]="bug.name" class="form-control" name="name" />
+          <input
+            [(ngModel)]="bug.name"
+            class="form-control"
+            name="name"
+            maxlength="20"
+            (keyup)="this.valueCheck()"
+          />
+          <span id="charName">20</span><i> characters remaining</i>
+          <br />
           <br />
           <button class="submitButton" (click)="this.getBugsByName(bug.name)">
             SEARCH BUG
           </button>
+          <br />
           <br />
         </div>
 
@@ -84,34 +92,33 @@
       </div>
     </div>
     <br />
-<div id="updateFields">
-  <div id="showBugData">
-    <table class="table table-bordered">
-      <thead>
-        <td>ID</td>
-        <td>Name</td>
-        <td>Priority</td>
-        <td>Module</td>
-        <td>Type</td>
-        <td>Status</td>
-        <td>Build Version</td>
-        <td>Severity</td>
-      </thead>
-      <tbody>
-        <tr *ngFor="let bug of bugArray">
-          <td>{{ bug.id }}</td>
-          <td>{{ bug.name }}</td>
-          <td>{{ bug.priority }}</td>
-          <td>{{ bug.module }}</td>
-          <td>{{ bug.type }}</td>
-          <td>{{ bug.status }}</td>
-          <td>{{ bug.buildVersion }}</td>
-          <td>{{ bug.severity }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div id="updateFields">
+      <div id="showBugData">
+        <table class="table table-bordered">
+          <thead>
+            <td><b>ID</b></td>
+            <td><b>Name</b></td>
+            <td><b>Priority</b></td>
+            <td><b>Module</b></td>
+            <td><b>Type</b></td>
+            <td><b>Status</b></td>
+            <td><b>Build Version</b></td>
+            <td><b>Severity</b></td>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bug of bugArray">
+              <td>{{ bug.id }}</td>
+              <td>{{ bug.name }}</td>
+              <td>{{ bug.priority }}</td>
+              <td>{{ bug.module }}</td>
+              <td>{{ bug.type }}</td>
+              <td>{{ bug.status }}</td>
+              <td>{{ bug.buildVersion }}</td>
+              <td>{{ bug.severity }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
-  </div>
-</div>
-

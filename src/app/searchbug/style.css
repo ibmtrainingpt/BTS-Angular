@@ -108,3 +108,7 @@ table{
 th,td{
   padding:2px;
 }
+
+#charName{
+  font-style: italic;
+}

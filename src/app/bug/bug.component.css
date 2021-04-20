@@ -17,3 +17,7 @@ button{
   text-align: center;
   background-color: lavender;
 }
+
+#charSynopsis, #charDescription{
+  font-style: italic;
+}
