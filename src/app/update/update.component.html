@@ -17,9 +17,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a routerLink="/create">Create Bug</a></li>
+        <li><a routerLink="/create">Create Bug</a></li>
         <li><a routerLink="/search">Search Bug</a></li>
-        <li><a routerLink="/update">Update Bug</a></li>
+        <li class="active" routerLink="/update"><a>Update Bug</a></li>
       </ul>
     </div>
   </div>
@@ -27,6 +27,11 @@
 
 <div class="container-fluid text-center" style="background-color: #f8f9fa">
   <div class="row content" style="text-align: center">
+    <div style="text-align: center; margin-top: 20px;">
+      <label>Bug ID:</label>
+      <select [(ngModel)]="bug.id" name="id">
+    </select>
+      <br /></div>
     <div id="bugDetails" style="background-color: #f8f9fa">
       <form class="form-horizontal">
         <div
@@ -186,6 +191,6 @@
       </form>
       <br />
     </div>
-    <button class="submitButton" (click)="create()">CREATE BUG</button>
+    <button class="submitButton">UPDATE BUG</button>
   </div>
 </div>

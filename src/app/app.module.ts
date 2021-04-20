@@ -6,18 +6,21 @@ import { BugComponent } from './bug/bug.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import { SearchbugComponent } from './searchbug/searchbug.component'
-import {RouterModule} from '@angular/router'
+import {RouterModule} from '@angular/router';
+import { UpdateComponent } from './update/update.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     BugComponent,
-    SearchbugComponent
+    SearchbugComponent,
+    UpdateComponent
   ],
   imports: [
     BrowserModule, RouterModule.forRoot([
       {path: 'create', component: BugComponent},
       {path: 'search', component: SearchbugComponent},
+      {path: 'update', component: UpdateComponent},
       {path: '', redirectTo: '/search', pathMatch: 'full'},
     ]), FormsModule, BrowserAnimationsModule, HttpClientModule
   ],
