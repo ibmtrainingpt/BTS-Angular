@@ -15,13 +15,40 @@ export class SearchbugComponent implements OnInit {
   bugArray: any;
 
   getBugsByName(name: String){
-    const observable = this.bugService.getBugsByName(name);
-    observable.subscribe(response => this.bugArray = response);
+    if(name){
+      if(name.trim()){
+        const observable = this.bugService.getBugsByName(name);
+        observable.subscribe(response => {
+        this.bugArray = response
+        },
+        error => {
+          console.log(error);
+          alert("Error!")
+          })
+        }
+        else{
+          alert("No such record found!")
+        }
+    }
+    else{
+      alert("Please enter bug name!")
+    }
   }
 
   getBugsByStatus(status:any){
-    const observable = this.bugService.getBugsByStatus(status);
-    observable.subscribe(response => this.bugArray = response);
+    if(status){
+      const observable = this.bugService.getBugsByStatus(status);
+      observable.subscribe(response => {
+        this.bugArray = response
+      },
+      error => {
+        console.log(error);
+        alert("No such record found!")
+        })
+    }
+    else{
+      alert("Please select status!")
+    }
   }
 
   ngOnInit(): void {
