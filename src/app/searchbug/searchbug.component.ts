@@ -15,14 +15,28 @@ export class SearchbugComponent implements OnInit {
   bugArray: any;
   maxLength = 20;
 
+  getBugs(name:String, status:any){
+    if(name != null){
+      this.getBugsByName(name);
+    }
+    else if (status != null){
+      this.getBugsByStatus(status);
+    }
+    else{
+      this.bugService.getAllBugs();
+    }
+  }
+
   getBugsByName(name: String) {
     //method to retrieve bugs by name
-    if (name) {
       if (name.trim()) {
         const observable = this.bugService.getBugsByName(name);
         observable.subscribe(
           (response) => {
             this.bugArray = response;
+            if(this.bugArray[0] == undefined){
+              alert("No such record found!")
+            }
           },
           (error) => {
             console.log(error);
@@ -30,11 +44,8 @@ export class SearchbugComponent implements OnInit {
           }
         );
       } else {
-        alert('No such record found!');
+        alert('Please enter bug name.');
       }
-    } else {
-      alert('Please enter bug name!');
-    }
   }
 
   getBugsByStatus(status: any) {
@@ -66,6 +77,23 @@ export class SearchbugComponent implements OnInit {
     length = this.bug.name.length;
     length = this.maxLength - length;
     remainingCharacters.textContent = length.toString();
+  }
+
+  clearName(){
+    this.bug = new Bug();
+    const divTag = document.getElementById('text');
+    divTag.style.visibility = 'hidden';
+    const remainingCharacters = <HTMLInputElement>(
+      document.getElementById('charName')
+    );
+    remainingCharacters.style.visibility = 'hidden';
+    const name = <HTMLInputElement>(document.getElementById("name"));
+    name.value = null;
+  }
+
+  clearStatus(){
+    const status = <HTMLInputElement>(document.getElementById("status"));
+    status.value = null;
   }
 
   ngOnInit(): void {

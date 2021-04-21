@@ -103,6 +103,7 @@ label{
 table{
   align-self: center;
   width:100%;
+  margin: 10px;
 }
 
 th,td{

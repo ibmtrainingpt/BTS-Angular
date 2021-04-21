@@ -26,8 +26,8 @@
 </nav>
 
 <div class="container-fluid text-center" style="background-color: #f8f9fa">
-  <div class="row content" style="text-align: center">
-    <div id="bugDetails" style="background-color: #f8f9fa">
+  <div class="row content" style="text-align: center; margin-top: 30px;">
+    <div id="bugDetails" style="background-color: #f8f9fa; text-align: center;">
       <div
         class="col-sm-12 text-left"
         id="column1"
@@ -37,20 +37,16 @@
           <label>Enter Bug Name:</label>
           <input
             [(ngModel)]="bug.name"
+            id = "name"
             class="form-control"
             name="name"
             maxlength="20"
             (keyup)="this.valueCheck()"
+            (focus)="this.clearStatus()"
           />
           <div id="text">
             <span id="charName">20</span><i> characters remaining</i>
           </div>
-          <br />
-          <button class="submitButton" (click)="this.getBugsByName(bug.name)">
-            SEARCH BUG
-          </button>
-          <br />
-          <br />
         </div>
 
         <div
@@ -64,6 +60,7 @@
             name="status"
             id="status"
             class="form-control"
+            (focus)="this.clearName()"
           >
             <option>NEW</option>
             <option>ASSIGNED</option>
@@ -82,23 +79,21 @@
             <option>WONT_FIX</option>
             <option>NEED_MORE_INFO</option>
           </select>
-          <br />
-          <br />
-          <button
+        </div>
+      </div>
+      <button
             class="submitButton"
-            (click)="this.getBugsByStatus(bug.status)"
+            (click)="this.getBugs(bug.name,bug.status)"
           >
             SEARCH BUG
           </button>
-        </div>
-      </div>
+          <br />
     </div>
     <br />
     <div id="updateFields">
       <div id="showBugData">
         <table class="table table-bordered">
           <thead>
-            <td><b>ID</b></td>
             <td><b>Name</b></td>
             <td><b>Priority</b></td>
             <td><b>Module</b></td>
@@ -110,7 +105,6 @@
           </thead>
           <tbody>
             <tr *ngFor="let bug of bugArray">
-              <td>{{ bug.id }}</td>
               <td>{{ bug.name }}</td>
               <td>{{ bug.priority | titlecase }}</td>
               <td>{{ bug.module }}</td>
