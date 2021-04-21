@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Bug } from '../Bug';
 import { BugService } from '../bugService';
+import { PRIORITY } from '../PRIORITY';
+import { SEVERITY } from '../SEVERITY';
+import { STATUS } from '../STATUS';
+import { TYPE } from '../TYPE';
 
 @Component({
   selector: 'app-bug',
@@ -10,11 +14,56 @@ import { BugService } from '../bugService';
 export class BugComponent implements OnInit {
   bug: Bug = new Bug(); //model
   ImgPath: string = './assets/bughawk.jpeg';
-  constructor(private bugService: BugService) {}
+
+  priority = null;
+  priorityEnum = PRIORITY;
+  priorityKeys = [];
+
+  status = null;
+  statusEnum = STATUS;
+  statusKeys = [];
+
+  type = null;
+  typeEnum = TYPE;
+  typeKeys = [];
+
+  severity = null;
+  severityEnum = SEVERITY;
+  severityKeys = [];
+
+  selectedValue: any;
+
+  constructor(private bugService: BugService) {
+    this.priorityKeys = Object.keys(this.priorityEnum).filter(f => !isNaN(Number(f)));
+    this.statusKeys = Object.keys(this.statusEnum).filter(f => !isNaN(Number(f)));
+    this.typeKeys = Object.keys(this.typeEnum).filter(f => !isNaN(Number(f)));
+    this.severityKeys = Object.keys(this.severityEnum).filter(f => !isNaN(Number(f)));
+  }
 
   bugArray: Bug[] = [];
   maxLengthSynopsis = 50;
   maxLengthDescription = 200;
+  maxLengthName = 100;
+
+  selectChangePriority(value: string) {
+    this.priority = this.priorityEnum[value];
+    this.bug.priority = this.priority;
+}
+
+selectChangeType(value: string) {
+  this.type = this.typeEnum[value];
+  this.bug.type = this.type;
+}
+
+selectChangeStatus(value: string) {
+  this.status = this.statusEnum[value];
+  this.bug.status = this.status;
+}
+
+selectChangeSeverity(value: string) {
+  this.severity = this.severityEnum[value];
+  this.bug.severity = this.severity;
+}
 
   create() {        //method to create bug
     this.validate();
@@ -29,7 +78,7 @@ export class BugComponent implements OnInit {
         this.bug = new Bug();
       },
       (error) => {
-        alert(error.headers.get('error'));
+//        alert(error.headers.get('error'));
         alert('Error occurred!');
       }
     );
@@ -39,8 +88,8 @@ export class BugComponent implements OnInit {
     let errorText = '';
     if (this.bug.name) {
       if (this.bug.name.trim()) {
-        if (this.bug.name.length > 20) {
-          errorText += 'Bug name cannot be longer than 20 characters. \n';
+        if (this.bug.name.length > 100) {
+          errorText += 'Bug name cannot be longer than 100 characters. \n';
         }
       }
     } else {
@@ -53,8 +102,8 @@ export class BugComponent implements OnInit {
 
     if (this.bug.module) {
       if (this.bug.module.trim()) {
-        if (this.bug.module.length > 10) {
-          errorText += 'Module cannot be longer than 10 characters. \n';
+        if (this.bug.module.length > 50) {
+          errorText += 'Module cannot be longer than 50 characters. \n';
         }
       }
     } else {
@@ -75,8 +124,8 @@ export class BugComponent implements OnInit {
 
     if (this.bug.projectId) {
       if (this.bug.projectId.trim()) {
-        if (this.bug.projectId.length > 10) {
-          errorText += 'Project ID cannot be longer than 10 characters. \n';
+        if (this.bug.projectId.length > 20) {
+          errorText += 'Project ID cannot be longer than 20 characters. \n';
         }
       }
     } else {
@@ -89,9 +138,7 @@ export class BugComponent implements OnInit {
   }
 
   valueCheckSynopsis() {
-    const remainingCharactersSynopsis = <HTMLTextAreaElement>(
-      document.getElementById('charSynopsis')
-    );
+    const remainingCharactersSynopsis = document.getElementById('charSynopsis');
     const divTag = document.getElementById('text1');
     remainingCharactersSynopsis.style.visibility = 'visible';
     divTag.style.visibility = 'visible';
@@ -101,9 +148,7 @@ export class BugComponent implements OnInit {
   }
 
   valueCheckDescription() {
-    const remainingCharactersDescription = <HTMLTextAreaElement>(
-      document.getElementById('charDescription')
-    );
+    const remainingCharactersDescription = document.getElementById('charDescription');
     const divTag = document.getElementById('text2');
     remainingCharactersDescription.style.visibility = 'visible';
     divTag.style.visibility = 'visible';
@@ -112,5 +157,35 @@ export class BugComponent implements OnInit {
     remainingCharactersDescription.textContent = length.toString();
   }
 
-  ngOnInit(): void {}
+  valueCheckName() {
+    const remainingCharactersName = document.getElementById('charName');
+    const divTag = document.getElementById('text3');
+    remainingCharactersName.style.visibility = 'visible';
+    divTag.style.visibility = 'visible';
+    length = this.bug.name.length;
+    length = this.maxLengthName - length;
+    remainingCharactersName.textContent = length.toString();
+  }
+
+  hide(){
+    const remainingCharactersName = document.getElementById('charName');
+    const divTag1 = document.getElementById('text3');
+    remainingCharactersName.style.visibility = 'hidden';
+    divTag1.style.visibility = 'hidden';
+    const remainingCharactersDescription = document.getElementById('charDescription');
+    const divTag2 = document.getElementById('text2');
+    remainingCharactersDescription.style.visibility = 'hidden';
+    divTag2.style.visibility = 'hidden';
+    const remainingCharactersSynopsis = document.getElementById('charSynopsis');
+    const divTag = document.getElementById('text1');
+    remainingCharactersSynopsis.style.visibility = 'hidden';
+    divTag.style.visibility = 'hidden';
+  }
+
+  ngOnInit(): void {
+    this.priority = 0;
+    this.status = 0;
+    this.type = 1;
+    this.severity = 0;
+  }
 }

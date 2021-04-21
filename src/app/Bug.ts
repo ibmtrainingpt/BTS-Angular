@@ -1,3 +1,8 @@
+import { PRIORITY } from './PRIORITY';
+import { TYPE } from './TYPE';
+import { STATUS } from './STATUS';
+import { SEVERITY } from './SEVERITY';
+
 export class Bug {
   id: any;
   name: String;
@@ -13,45 +18,4 @@ export class Bug {
   testerId: String;
   synopsis: String;
   description: String;
-}
-
-enum PRIORITY {
-  LOW,
-  MEDIUM,
-  HIGH,
-}
-
-enum TYPE {
-  LOGICAL,
-  SYNTAX,
-  API,
-  GUI,
-  RUNTIME,
-}
-
-enum STATUS {
-  NEW,
-  ASSIGNED,
-  OPEN,
-  FIXED,
-  PENDING_RETEST,
-  RETEST,
-  REOPEN,
-  VERIFIED,
-  CLOSED,
-  REJECTED,
-  DUPLICATE,
-  DEFERRED,
-  NOT_A_BUG,
-  COULD_NOT_REPRODUCE,
-  WONT_FIX,
-  NEED_MORE_INFO,
-}
-
-enum SEVERITY {
-  LOW,
-  MINOR,
-  MAJOR,
-  CRITICAL,
-  BLOCKER,
 }

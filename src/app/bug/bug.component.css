@@ -18,7 +18,7 @@ button{
   background-color: lavender;
 }
 
-#charSynopsis, #charDescription, #text1, #text2{
+#charSynopsis, #charDescription, #text1, #text2, #text3, #charName{
   font-style: italic;
   visibility: hidden;
 }
