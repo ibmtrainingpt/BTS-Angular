@@ -78,14 +78,13 @@ selectChangeSeverity(value: string) {
         this.bug = new Bug();
       },
       (error) => {
-//        alert(error.headers.get('error'));
         alert('Error occurred!');
       }
     );
   }
 
   validate() {    //method for validation
-    let errorText = '';
+    let errorText = null;
     if (this.bug.name) {
       if (this.bug.name.trim()) {
         if (this.bug.name.length > 100) {
@@ -96,9 +95,6 @@ selectChangeSeverity(value: string) {
       errorText += 'Please enter Bug name. \n';
     }
 
-    if (!this.bug.priority) {
-      errorText += 'Please select priority. \n';
-    }
 
     if (this.bug.module) {
       if (this.bug.module.trim()) {
@@ -108,18 +104,6 @@ selectChangeSeverity(value: string) {
       }
     } else {
       errorText += 'Please enter module. \n';
-    }
-
-    if (!this.bug.type) {
-      errorText += 'Please select type. \n';
-    }
-
-    if (!this.bug.status) {
-      errorText += 'Please select status. \n';
-    }
-
-    if (!this.bug.severity) {
-      errorText += 'Please select severity. \n';
     }
 
     if (this.bug.projectId) {
@@ -184,8 +168,12 @@ selectChangeSeverity(value: string) {
 
   ngOnInit(): void {
     this.priority = 0;
+    this.bug.priority = PRIORITY.LOW;
     this.status = 0;
+    this.bug.status = STATUS.NEW;
     this.type = 1;
+    this.bug.type = TYPE.SYNTAX;
     this.severity = 0;
+    this.bug.severity = SEVERITY.LOW;
   }
 }

@@ -13,7 +13,7 @@ export class SearchbugComponent implements OnInit {
   constructor(private bugService: BugService) {}
 
   bugArray: any;
-  maxLength = 20;
+  maxLength = 100;
 
   getBugs(name:String, status:any){
     if(name != null){
