@@ -8,13 +8,15 @@ import {HttpClientModule} from '@angular/common/http';
 import { SearchbugComponent } from './searchbug/searchbug.component'
 import {RouterModule} from '@angular/router';
 import { UpdateComponent } from './update/update.component'
+import {EllipsisPipe} from './EllipsisPipe'
 
 @NgModule({
   declarations: [
     AppComponent,
     BugComponent,
     SearchbugComponent,
-    UpdateComponent
+    UpdateComponent,
+    EllipsisPipe
   ],
   imports: [
     BrowserModule, RouterModule.forRoot([

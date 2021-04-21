@@ -4,7 +4,9 @@
 }
 
 .row.content {
-      height: 450px
+      height: 450px;
+      text-align: center;
+      margin: 30px;
 }
 
 .sidenav {

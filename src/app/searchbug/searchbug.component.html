@@ -26,7 +26,7 @@
 </nav>
 
 <div class="container-fluid text-center" style="background-color: #f8f9fa">
-  <div class="row content" style="text-align: center; margin-top: 30px;">
+  <div class="row content">
     <div id="bugDetails" style="background-color: #f8f9fa; text-align: center;">
       <div
         class="col-sm-12 text-left"
@@ -100,8 +100,9 @@
             <td><b>ETA</b></td>
             <td><b>Type</b></td>
             <td><b>Status</b></td>
-            <td><b>Build Version</b></td>
             <td><b>Severity</b></td>
+            <td><b>Synopsis</b></td>
+            <td><b>Description</b></td>
           </thead>
           <tbody>
             <tr *ngFor="let bug of bugArray">
@@ -111,8 +112,9 @@
               <td>{{ bug.eta | date }}</td>
               <td>{{ bug.type }}</td>
               <td>{{ bug.status | titlecase }}</td>
-              <td>{{ bug.buildVersion }}</td>
               <td>{{ bug.severity | titlecase }}</td>
+              <td>{{bug.synopsis | ellipsis:5}}</td>
+              <td>{{bug.description | ellipsis:5}}</td>
             </tr>
           </tbody>
         </table>
