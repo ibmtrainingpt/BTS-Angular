@@ -35,12 +35,12 @@
           style="background-color: #f8f9fa"
         >
           <div id="bugFields" class="column form-group">
-            <label>Bug Name:</label>
+            <label>Bug Name: <span style="color:red">*</span></label>
             <input [(ngModel)]="bug.name" class="form-control" name="name" maxlength = "100" (keyup) = "valueCheckName()" (blur) = "hide()"/>
             <div id="text3">
               <span id="charName">100</span> <i> characters remaining</i>
             </div>
-            <label>Bug Priority: </label>
+            <label>Bug Priority: <span style="color:red">*</span></label>
             <select
               [(ngModel)]="priority"
               name="priority"
@@ -54,14 +54,14 @@
               </option>
             </select>
             <br />
-            <label>Module</label>
+            <label>Module <span style="color:red">*</span></label>
             <input
               [(ngModel)]="bug.module"
               class="form-control"
               name="module"
             />
             <br />
-            <label>Bug Type:</label>
+            <label>Bug Type: <span style="color:red">*</span></label>
             <select
               [(ngModel)]="type"
               name="type"
@@ -75,7 +75,7 @@
               </option>
             </select>
             <br />
-            <label>Bug Status:</label>
+            <label>Bug Status: <span style="color:red">*</span></label>
             <select
               [(ngModel)]="status"
               id="status"
@@ -88,7 +88,7 @@
               </option>
             </select>
             <br />
-            <label>ETA:</label>
+            <label>ETA: <span style="color:red">*</span></label>
             <input
               [(ngModel)]="bug.eta"
               type="date"
@@ -110,7 +110,7 @@
             id="column2"
             style="background-color: #f8f9fa"
           >
-            <label>Severity:</label>
+            <label>Severity: <span style="color:red">*</span></label>
             <select
               [(ngModel)]="severity"
               name="severity"
@@ -124,7 +124,7 @@
               </option>
             </select>
             <br />
-            <label>Project ID:</label>
+            <label>Project ID: <span style="color:red">*</span></label>
             <input
               [(ngModel)]="bug.projectId"
               class="form-control"
@@ -145,7 +145,7 @@
               name="testerId"
             />
             <br />
-            <label>Synopsis:</label>
+            <label>Synopsis: <span style="color:red">*</span></label>
             <textarea
               [(ngModel)]="bug.synopsis"
               name="synopsis"
@@ -161,7 +161,7 @@
               <span id="charSynopsis">50</span> <i> characters remaining</i>
             </div>
             <br />
-            <label>Description</label>
+            <label>Description: <span style="color:red">*</span></label>
             <textarea
               [(ngModel)]="bug.description"
               name="description"

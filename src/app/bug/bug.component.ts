@@ -84,7 +84,7 @@ selectChangeSeverity(value: string) {
   }
 
   validate() {    //method for validation
-    let errorText = null;
+    let errorText = "";
     if (this.bug.name) {
       if (this.bug.name.trim()) {
         if (this.bug.name.length > 100) {
