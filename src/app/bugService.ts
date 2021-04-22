@@ -28,9 +28,9 @@ export class BugService {
     return this.http.get(URL + 'status/' + status);
   }
 
-  update(bug: Bug, id:any){
+  update(bug: Bug, id: any) {
     return this.http.put(URL + id, bug, {
-      headers: {"content-type": 'application/json' }
+      headers: { 'content-type': 'application/json' },
     });
   }
 }

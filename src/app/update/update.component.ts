@@ -7,8 +7,7 @@ import { BugService } from '../bugService';
   templateUrl: './update.component.html',
   styleUrls: ['./update.component.css', './style.css'],
 })
-
-export class UpdateComponent implements OnInit{
+export class UpdateComponent implements OnInit {
   bug: Bug = new Bug(); //model
   ImgPath: string = './assets/bughawk.jpeg';
   maxLengthSynopsis = 50;
@@ -25,37 +24,33 @@ export class UpdateComponent implements OnInit{
         (response) => {
           this.bugArray = response;
           this.bug = this.bugArray[0];
-          if(this.bugArray[0] == undefined){
-            alert("No such record found!")
+          if (this.bugArray[0] == undefined) {
+            alert('No such record found!');
           }
         },
         (error) => {
           console.log(error);
           alert('Error!');
-        });
+        }
+      );
     } else {
       alert('Please enter a bug name.');
     }
   }
 
-  validate(){
-      if (!this.bug.name.trim()) {
-        alert("Please enter Bug name.");
-      }
-      else if (!this.bug.projectId.trim()) {
-        alert("Please enter Project ID.");
-      }
-      else if (!this.bug.eta) {
-        alert("ETA cannot be left empty!");
-      }
-      else if (!this.bug.module.trim()) {
-        alert("Please enter Module.");
-      }
-      else if (!this.bug.synopsis.trim()) {
-        alert("Synopsis cannot be left blank!");
-      }
-      else if (!this.bug.description.trim()) {
-        alert("Description cannot be left blank!");
+  validate() {
+    if (!this.bug.name.trim()) {
+      alert('Please enter Bug name.');
+    } else if (!this.bug.projectId.trim()) {
+      alert('Please enter Project ID.');
+    } else if (!this.bug.eta) {
+      alert('ETA cannot be left empty!');
+    } else if (!this.bug.module.trim()) {
+      alert('Please enter Module.');
+    } else if (!this.bug.synopsis.trim()) {
+      alert('Synopsis cannot be left blank!');
+    } else if (!this.bug.description.trim()) {
+      alert('Description cannot be left blank!');
     }
   }
 
@@ -83,15 +78,17 @@ export class UpdateComponent implements OnInit{
     remainingCharactersDescription.textContent = length.toString();
   }
 
-  update(){
+  update() {
     this.validate();
     const observable = this.bugService.update(this.bug, this.bug.id);
-    observable.subscribe(response => {
-      alert('Bug Updated!')
-    },
+    observable.subscribe(
+      (response) => {
+        alert('Bug Updated!');
+      },
       (error) => {
-        alert("Error occurred!");
-    })
+        alert('Error occurred!');
+      }
+    );
   }
-  ngOnInit(): void{}
+  ngOnInit(): void {}
 }

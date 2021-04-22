@@ -27,10 +27,11 @@
 
 <div class="container-fluid text-center" style="background-color: #f8f9fa">
   <div class="row content" style="text-align: center">
-    <div style="text-align: center; margin-top: 20px;">
-      <input [(ngModel)]="bug.name" name="name" placeholder="Enter Bug Name">
-      <button id = "getBug" (click) = this.getBug()>Get Bug</button>
-      <br /></div>
+    <div style="text-align: center; margin-top: 20px">
+      <input [(ngModel)]="bug.name" name="name" placeholder="Enter Bug Name" />
+      <button id="getBug" (click)="this.getBug()">Get Bug</button>
+      <br />
+    </div>
     <div id="bugDetails" style="background-color: #f8f9fa">
       <form class="form-horizontal">
         <div
@@ -168,7 +169,9 @@
               maxlength="50"
               (keyup)="this.valueCheckSynopsis()"
             ></textarea>
-            <div id = "text1"><span id="charSynopsis">50</span> <i> characters remaining</i></div>
+            <div id="text1">
+              <span id="charSynopsis">50</span> <i> characters remaining</i>
+            </div>
             <br />
             <label>Description</label>
             <textarea
@@ -181,12 +184,14 @@
               maxlength="200"
               (keyup)="this.valueCheckDescription()"
             ></textarea>
-            <div id = "text2"><span id="charDescription">200</span> <i> characters remaining</i></div>
+            <div id="text2">
+              <span id="charDescription">200</span> <i> characters remaining</i>
+            </div>
           </div>
         </div>
       </form>
       <br />
     </div>
-    <button class="submitButton" (click) = "this.update()">UPDATE BUG</button>
+    <button class="submitButton" (click)="this.update()">UPDATE BUG</button>
   </div>
 </div>
