@@ -103,9 +103,10 @@
             <td><b>Severity</b></td>
             <td><b>Synopsis</b></td>
             <td><b>Description</b></td>
+            <td><b>Delete Record</b></td>
           </thead>
           <tbody>
-            <tr *ngFor="let bug of bugArray">
+            <tr *ngFor="let bug of bugArray,index as i">
               <td>{{ bug.name }}</td>
               <td>{{ bug.priority | titlecase }}</td>
               <td>{{ bug.module }}</td>
@@ -115,6 +116,7 @@
               <td>{{ bug.severity | titlecase }}</td>
               <td>{{bug.synopsis | ellipsis:5}}</td>
               <td>{{bug.description | ellipsis:5}}</td>
+              <td style = "text-align: center;"><button (click) = "deleteBug(bug.id, i)"><b>x</b></button></td>
             </tr>
           </tbody>
         </table>

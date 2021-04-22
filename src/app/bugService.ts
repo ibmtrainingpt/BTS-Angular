@@ -33,4 +33,8 @@ export class BugService {
       headers: { 'content-type': 'application/json' },
     });
   }
+
+  delete(id: String){
+    return this.http.delete(URL + id);
+  }
 }
