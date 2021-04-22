@@ -5,16 +5,59 @@ import { BugService } from '../bugService';
 @Component({
   selector: 'app-update',
   templateUrl: './update.component.html',
-  styleUrls: ['./update.component.css','./style.css']
+  styleUrls: ['./update.component.css', './style.css'],
 })
-export class UpdateComponent implements OnInit {
 
+export class UpdateComponent implements OnInit{
   bug: Bug = new Bug(); //model
   ImgPath: string = './assets/bughawk.jpeg';
   maxLengthSynopsis = 50;
   maxLengthDescription = 200;
+  name: String;
+  bugArray: any;
 
   constructor(private bugService: BugService) {}
+
+  getBug() {
+    if (this.bug.name) {
+      const observable = this.bugService.getBugsByName(this.bug.name);
+      observable.subscribe(
+        (response) => {
+          this.bugArray = response;
+          this.bug = this.bugArray[0];
+          if(this.bugArray[0] == undefined){
+            alert("No such record found!")
+          }
+        },
+        (error) => {
+          console.log(error);
+          alert('Error!');
+        });
+    } else {
+      alert('Please enter a bug name.');
+    }
+  }
+
+  validate(){
+      if (!this.bug.name.trim()) {
+        alert("Please enter Bug name.");
+      }
+      else if (!this.bug.projectId.trim()) {
+        alert("Please enter Project ID.");
+      }
+      else if (!this.bug.eta) {
+        alert("ETA cannot be left empty!");
+      }
+      else if (!this.bug.module.trim()) {
+        alert("Please enter Module.");
+      }
+      else if (!this.bug.synopsis.trim()) {
+        alert("Synopsis cannot be left blank!");
+      }
+      else if (!this.bug.description.trim()) {
+        alert("Description cannot be left blank!");
+    }
+  }
 
   valueCheckSynopsis() {
     const remainingCharactersSynopsis = <HTMLTextAreaElement>(
@@ -40,8 +83,15 @@ export class UpdateComponent implements OnInit {
     remainingCharactersDescription.textContent = length.toString();
   }
 
-
-  ngOnInit(): void {
+  update(){
+    this.validate();
+    const observable = this.bugService.update(this.bug, this.bug.id);
+    observable.subscribe(response => {
+      alert('Bug Updated!')
+    },
+      (error) => {
+        alert("Error occurred!");
+    })
   }
-
+  ngOnInit(): void{}
 }

@@ -28,8 +28,8 @@
 <div class="container-fluid text-center" style="background-color: #f8f9fa">
   <div class="row content" style="text-align: center">
     <div style="text-align: center; margin-top: 20px;">
-      <label>Bug ID:</label>
-      <input [(ngModel)]="bug.id" name="id">
+      <input [(ngModel)]="bug.name" name="name" placeholder="Enter Bug Name">
+      <button id = "getBug" (click) = this.getBug()>Get Bug</button>
       <br /></div>
     <div id="bugDetails" style="background-color: #f8f9fa">
       <form class="form-horizontal">
@@ -39,9 +39,6 @@
           style="background-color: #f8f9fa"
         >
           <div id="bugFields" class="column form-group">
-            <label>Bug Name:</label>
-            <input [(ngModel)]="bug.name" class="form-control" name="name" />
-            <br />
             <label>Bug Priority: </label>
             <select
               [(ngModel)]="bug.priority"
@@ -190,6 +187,6 @@
       </form>
       <br />
     </div>
-    <button class="submitButton">UPDATE BUG</button>
+    <button class="submitButton" (click) = "this.update()">UPDATE BUG</button>
   </div>
 </div>

@@ -22,3 +22,14 @@ button{
   font-style: italic;
   visibility: hidden;
 }
+
+#getBug{
+  border-color: seagreen;
+  background-color: #f8f9fa;
+  width: 8%;
+}
+
+#getBug:hover {
+  background-color: seagreen;
+  color: white;
+}
