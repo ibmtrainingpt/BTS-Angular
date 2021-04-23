@@ -18,13 +18,17 @@ export class UpdateComponent implements OnInit {
   constructor(private bugService: BugService) {}
 
   getBug() {
+    //method to retrieve bug details on button click
     if (this.bug.name) {
       const observable = this.bugService.getBugsByName(this.bug.name);
       observable.subscribe(
         (response) => {
           this.bugArray = response;
+
           this.bug = this.bugArray[0];
+          this.bug.etaString = this.bug.eta.toString().split('T')[0];
           if (this.bugArray[0] == undefined) {
+            //if the bug is not found
             alert('No such record found!');
           }
         },
@@ -39,6 +43,7 @@ export class UpdateComponent implements OnInit {
   }
 
   validate() {
+    //method for validation
     if (!this.bug.name.trim()) {
       alert('Please enter Bug name.');
     } else if (!this.bug.projectId.trim()) {
@@ -55,9 +60,7 @@ export class UpdateComponent implements OnInit {
   }
 
   valueCheckSynopsis() {
-    const remainingCharactersSynopsis = <HTMLTextAreaElement>(
-      document.getElementById('charSynopsis')
-    );
+    const remainingCharactersSynopsis = document.getElementById('charSynopsis');
     const divTag = document.getElementById('text1');
     remainingCharactersSynopsis.style.visibility = 'visible';
     divTag.style.visibility = 'visible';
@@ -67,8 +70,8 @@ export class UpdateComponent implements OnInit {
   }
 
   valueCheckDescription() {
-    const remainingCharactersDescription = <HTMLTextAreaElement>(
-      document.getElementById('charDescription')
+    const remainingCharactersDescription = document.getElementById(
+      'charDescription'
     );
     const divTag = document.getElementById('text2');
     remainingCharactersDescription.style.visibility = 'visible';
@@ -79,6 +82,8 @@ export class UpdateComponent implements OnInit {
   }
 
   update() {
+    //method to update the details
+    this.bug.eta = new Date(this.bug.etaString);
     this.validate();
     const observable = this.bugService.update(this.bug, this.bug.id);
     observable.subscribe(

@@ -28,13 +28,17 @@ export class BugService {
     return this.http.get(URL + 'status/' + status);
   }
 
+  getBugsByNameAndStatus(name: String, status: any) {
+    return this.http.get(URL + 'search?name=' + name + '&status=' + status);
+  }
+
   update(bug: Bug, id: any) {
     return this.http.put(URL + id, bug, {
       headers: { 'content-type': 'application/json' },
     });
   }
 
-  delete(id: String){
+  delete(id: String) {
     return this.http.delete(URL + id);
   }
 }

@@ -15,37 +15,50 @@ export class SearchbugComponent implements OnInit {
   bugArray: any;
   maxLength = 100;
 
-  getBugs(name:String, status:any){
-    if(name != null){
-      this.getBugsByName(name);
-    }
-    else if (status != null){
-      this.getBugsByStatus(status);
-    }
-    else{
+  getBugs(name: String, status: any) {
+    if (name && status) {
+      this.getBugsByNameAndStatus(name, status); //if both name and status are supplied
+    } else if (name) {
+      this.getBugsByName(name); //if name is supplied
+    } else if (status) {
+      this.getBugsByStatus(status); //if status is supplied
+    } else {
       this.bugService.getAllBugs();
     }
   }
 
+  getBugsByNameAndStatus(name: String, status: any) {
+    //method to retrieve bugs both by name and status
+    const observable = this.bugService.getBugsByNameAndStatus(name, status);
+    observable.subscribe((response) => {
+      this.bugArray = response;
+      if (this.bugArray[0] == undefined) {
+        alert(
+          'No record found with name : ' + name + 'and status : ' + status + '!'
+        );
+      }
+    });
+  }
+
   getBugsByName(name: String) {
     //method to retrieve bugs by name
-      if (name.trim()) {
-        const observable = this.bugService.getBugsByName(name);
-        observable.subscribe(
-          (response) => {
-            this.bugArray = response;
-            if(this.bugArray[0] == undefined){
-              alert("No such record found!")
-            }
-          },
-          (error) => {
-            console.log(error);
-            alert('Error!');
+    if (name.trim()) {
+      const observable = this.bugService.getBugsByName(name);
+      observable.subscribe(
+        (response) => {
+          this.bugArray = response;
+          if (this.bugArray[0] == undefined) {
+            alert('No such record found!');
           }
-        );
-      } else {
-        alert('Please enter bug name.');
-      }
+        },
+        (error) => {
+          console.log(error);
+          alert('Error!');
+        }
+      );
+    } else {
+      alert('Please enter bug name.');
+    }
   }
 
   getBugsByStatus(status: any) {
@@ -79,34 +92,27 @@ export class SearchbugComponent implements OnInit {
     remainingCharacters.textContent = length.toString();
   }
 
-  clearName(){
-    this.bug = new Bug();
+  clear() {
     const divTag = document.getElementById('text');
     divTag.style.visibility = 'hidden';
     const remainingCharacters = <HTMLInputElement>(
       document.getElementById('charName')
     );
     remainingCharacters.style.visibility = 'hidden';
-    const name = <HTMLInputElement>(document.getElementById("name"));
-    name.value = null;
   }
 
-  clearStatus(){
-    const status = <HTMLInputElement>(document.getElementById("status"));
-    status.value = null;
-  }
-
-  deleteBug(id:any, index:number){
-    if (confirm("Do you want to delete?")) {
+  deleteBug(id: any, index: number) {
+    //method for deletion of bug
+    if (confirm('Do you want to delete?')) {
       const observable = this.bugService.delete(id);
-      observable.subscribe((response) => (this.bugArray.splice(index,1)));
-    }
-    else {
-        alert("Deletion cancelled");
+      observable.subscribe((response) => this.bugArray.splice(index, 1));
+    } else {
+      alert('Deletion cancelled');
     }
   }
 
   ngOnInit(): void {
+    //loads the table on load of the page
     const observable = this.bugService.getAllBugs();
     observable.subscribe((response) => (this.bugArray = response));
   }

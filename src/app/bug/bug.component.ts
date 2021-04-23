@@ -31,13 +31,17 @@ export class BugComponent implements OnInit {
   severityEnum = SEVERITY;
   severityKeys = [];
 
-  selectedValue: any;
-
   constructor(private bugService: BugService) {
-    this.priorityKeys = Object.keys(this.priorityEnum).filter(f => !isNaN(Number(f)));
-    this.statusKeys = Object.keys(this.statusEnum).filter(f => !isNaN(Number(f)));
-    this.typeKeys = Object.keys(this.typeEnum).filter(f => !isNaN(Number(f)));
-    this.severityKeys = Object.keys(this.severityEnum).filter(f => !isNaN(Number(f)));
+    this.priorityKeys = Object.keys(this.priorityEnum).filter(
+      (f) => !isNaN(Number(f))
+    );
+    this.statusKeys = Object.keys(this.statusEnum).filter(
+      (f) => !isNaN(Number(f))
+    );
+    this.typeKeys = Object.keys(this.typeEnum).filter((f) => !isNaN(Number(f)));
+    this.severityKeys = Object.keys(this.severityEnum).filter(
+      (f) => !isNaN(Number(f))
+    );
   }
 
   bugArray: Bug[] = [];
@@ -48,24 +52,25 @@ export class BugComponent implements OnInit {
   selectChangePriority(value: string) {
     this.priority = this.priorityEnum[value];
     this.bug.priority = this.priority;
-}
+  }
 
-selectChangeType(value: string) {
-  this.type = this.typeEnum[value];
-  this.bug.type = this.type;
-}
+  selectChangeType(value: string) {
+    this.type = this.typeEnum[value];
+    this.bug.type = this.type;
+  }
 
-selectChangeStatus(value: string) {
-  this.status = this.statusEnum[value];
-  this.bug.status = this.status;
-}
+  selectChangeStatus(value: string) {
+    this.status = this.statusEnum[value];
+    this.bug.status = this.status;
+  }
 
-selectChangeSeverity(value: string) {
-  this.severity = this.severityEnum[value];
-  this.bug.severity = this.severity;
-}
+  selectChangeSeverity(value: string) {
+    this.severity = this.severityEnum[value];
+    this.bug.severity = this.severity;
+  }
 
-  create() {        //method to create bug
+  create() {
+    //method to create bug
     this.validate();
     console.log(this.bug.name);
     const promise = this.bugService.create(this.bug);
@@ -83,8 +88,9 @@ selectChangeSeverity(value: string) {
     );
   }
 
-  validate() {    //method for validation
-    let errorText = "";
+  validate() {
+    //method for validation
+    let errorText = '';
     if (this.bug.name) {
       if (this.bug.name.trim()) {
         if (this.bug.name.length > 100) {
@@ -94,7 +100,6 @@ selectChangeSeverity(value: string) {
     } else {
       errorText += 'Please enter Bug name. \n';
     }
-
 
     if (this.bug.module) {
       if (this.bug.module.trim()) {
@@ -132,7 +137,9 @@ selectChangeSeverity(value: string) {
   }
 
   valueCheckDescription() {
-    const remainingCharactersDescription = document.getElementById('charDescription');
+    const remainingCharactersDescription = document.getElementById(
+      'charDescription'
+    );
     const divTag = document.getElementById('text2');
     remainingCharactersDescription.style.visibility = 'visible';
     divTag.style.visibility = 'visible';
@@ -151,12 +158,14 @@ selectChangeSeverity(value: string) {
     remainingCharactersName.textContent = length.toString();
   }
 
-  hide(){
+  hide() {
     const remainingCharactersName = document.getElementById('charName');
     const divTag1 = document.getElementById('text3');
     remainingCharactersName.style.visibility = 'hidden';
     divTag1.style.visibility = 'hidden';
-    const remainingCharactersDescription = document.getElementById('charDescription');
+    const remainingCharactersDescription = document.getElementById(
+      'charDescription'
+    );
     const divTag2 = document.getElementById('text2');
     remainingCharactersDescription.style.visibility = 'hidden';
     divTag2.style.visibility = 'hidden';

@@ -35,60 +35,71 @@
           style="background-color: #f8f9fa"
         >
           <div id="bugFields" class="column form-group">
-            <label>Bug Name: <span style="color:red">*</span></label>
-            <input [(ngModel)]="bug.name" class="form-control" name="name" maxlength = "100" (keyup) = "valueCheckName()" (blur) = "hide()"/>
+            <label>Bug Name: <span style="color: red">*</span></label>
+            <input
+              [(ngModel)]="bug.name"
+              class="form-control"
+              name="name"
+              maxlength="100"
+              (keyup)="valueCheckName()"
+              (blur)="hide()"
+            />
             <div id="text3">
               <span id="charName">100</span> <i> characters remaining</i>
             </div>
-            <label>Bug Priority: <span style="color:red">*</span></label>
+            <label>Bug Priority: <span style="color: red">*</span></label>
             <select
               [(ngModel)]="priority"
               name="priority"
               id="priority"
               class="form-control"
               name="priority"
-              (change) = "selectChangePriority(this.priority)"
+              (change)="selectChangePriority(this.priority)"
             >
               <option *ngFor="let name of priorityKeys" [value]="name">
                 {{ priorityEnum[name] }}
               </option>
             </select>
             <br />
-            <label>Module <span style="color:red">*</span></label>
+            <label>Module <span style="color: red">*</span></label>
             <input
               [(ngModel)]="bug.module"
               class="form-control"
               name="module"
             />
             <br />
-            <label>Bug Type: <span style="color:red">*</span></label>
+            <label>Bug Type: <span style="color: red">*</span></label>
             <select
               [(ngModel)]="type"
               name="type"
               id="type"
               class="form-control"
               name="type"
-              (change) = "selectChangeType(this.type)"
+              (change)="selectChangeType(this.type)"
             >
               <option *ngFor="let name of typeKeys" [value]="name">
                 {{ typeEnum[name] }}
               </option>
             </select>
             <br />
-            <label>Bug Status: <span style="color:red">*</span></label>
+            <label>Bug Status: <span style="color: red">*</span></label>
             <select
               [(ngModel)]="status"
               id="status"
               class="form-control"
               name="status"
-              (change) = "selectChangeStatus(this.status)"
+              (change)="selectChangeStatus(this.status)"
             >
-              <option *ngFor="let name of statusKeys" [value]="name">
+              <option
+                *ngFor="let name of statusKeys"
+                id="statusOption"
+                [value]="name"
+              >
                 {{ statusEnum[name] }}
               </option>
             </select>
             <br />
-            <label>ETA: <span style="color:red">*</span></label>
+            <label>ETA: <span style="color: red">*</span></label>
             <input
               [(ngModel)]="bug.eta"
               type="date"
@@ -110,21 +121,21 @@
             id="column2"
             style="background-color: #f8f9fa"
           >
-            <label>Severity: <span style="color:red">*</span></label>
+            <label>Severity: <span style="color: red">*</span></label>
             <select
               [(ngModel)]="severity"
               name="severity"
               id="severity"
               class="form-control"
               name="severity"
-              (change) = "selectChangeSeverity(this.severity)"
+              (change)="selectChangeSeverity(this.severity)"
             >
               <option *ngFor="let name of severityKeys" [value]="name">
                 {{ severityEnum[name] }}
               </option>
             </select>
             <br />
-            <label>Project ID: <span style="color:red">*</span></label>
+            <label>Project ID: <span style="color: red">*</span></label>
             <input
               [(ngModel)]="bug.projectId"
               class="form-control"
@@ -145,7 +156,7 @@
               name="testerId"
             />
             <br />
-            <label>Synopsis: <span style="color:red">*</span></label>
+            <label>Synopsis: <span style="color: red">*</span></label>
             <textarea
               [(ngModel)]="bug.synopsis"
               name="synopsis"
@@ -155,13 +166,13 @@
               class="form-control"
               maxlength="50"
               (keyup)="this.valueCheckSynopsis()"
-              (blur) = "this.hide()"
+              (blur)="this.hide()"
             ></textarea>
             <div id="text1">
               <span id="charSynopsis">50</span> <i> characters remaining</i>
             </div>
             <br />
-            <label>Description: <span style="color:red">*</span></label>
+            <label>Description: <span style="color: red">*</span></label>
             <textarea
               [(ngModel)]="bug.description"
               name="description"
@@ -171,7 +182,7 @@
               class="form-control"
               maxlength="200"
               (keyup)="this.valueCheckDescription()"
-              (blur) = "this.hide()"
+              (blur)="this.hide()"
             ></textarea>
             <div id="text2">
               <span id="charDescription">200</span> <i> characters remaining</i>

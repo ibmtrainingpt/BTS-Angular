@@ -18,4 +18,5 @@ export class Bug {
   testerId: String;
   synopsis: String;
   description: String;
+  etaString: string;
 }
