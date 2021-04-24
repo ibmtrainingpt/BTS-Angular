@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Bug } from '../Bug';
 import { BugService } from '../bugService';
+import Swal from 'sweetalert2'; //for beautified alert
 
 @Component({
   selector: 'app-searchbug',
@@ -103,12 +104,32 @@ export class SearchbugComponent implements OnInit {
 
   deleteBug(id: any, index: number) {
     //method for deletion of bug
-    if (confirm('Do you want to delete?')) {
-      const observable = this.bugService.delete(id);
-      observable.subscribe((response) => this.bugArray.splice(index, 1));
-    } else {
-      alert('Deletion cancelled');
-    }
+    Swal.fire({
+      title: 'Are you sure you want to delete?',
+      text: 'This process is irreversible.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete',
+      cancelButtonText: 'No, let me think',
+    }).then((result) => {
+      if (result.value) {
+        //if Yes is pressed
+        const observable = this.bugService.delete(id);
+        observable.subscribe((response) => this.bugArray.splice(index, 1));
+        Swal.fire('Deleted', 'Bug deleted successfully!', 'success');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        //if No is pressed
+        Swal.fire('Cancelled', 'Deletion cancelled', 'error');
+      }
+    });
+  }
+
+  showSynopsis(synopsis: string) {
+    Swal.fire(synopsis);
+  }
+
+  showDescription(description: string) {
+    Swal.fire(description);
   }
 
   ngOnInit(): void {
