@@ -49,16 +49,15 @@
             </div>
             <label>Bug Priority: <span style="color: red">*</span></label>
             <select
-              [(ngModel)]="priority"
+              [(ngModel)]="bug.priority"
               name="priority"
               id="priority"
               class="form-control"
               name="priority"
-              (change)="selectChangePriority(this.priority)"
             >
-              <option *ngFor="let name of priorityKeys" [value]="name">
-                {{ priorityEnum[name] }}
-              </option>
+              <option>LOW</option>
+              <option>MEDIUM</option>
+              <option>HIGH</option>
             </select>
             <br />
             <label>Module <span style="color: red">*</span></label>
@@ -70,33 +69,42 @@
             <br />
             <label>Bug Type: <span style="color: red">*</span></label>
             <select
-              [(ngModel)]="type"
+              [(ngModel)]="bug.type"
               name="type"
               id="type"
               class="form-control"
               name="type"
-              (change)="selectChangeType(this.type)"
             >
-              <option *ngFor="let name of typeKeys" [value]="name">
-                {{ typeEnum[name] }}
-              </option>
+              <option>LOGICAL</option>
+              <option>SYNTAX</option>
+              <option>API</option>
+              <option>GUI</option>
+              <option>RUNTIME</option>
             </select>
             <br />
             <label>Bug Status: <span style="color: red">*</span></label>
             <select
-              [(ngModel)]="status"
+              [(ngModel)]="bug.status"
               id="status"
               class="form-control"
               name="status"
-              (change)="selectChangeStatus(this.status)"
             >
-              <option
-                *ngFor="let name of statusKeys"
-                id="statusOption"
-                [value]="name"
-              >
-                {{ statusEnum[name] }}
-              </option>
+              <option>NEW</option>
+              <option>ASSIGNED</option>
+              <option>OPEN</option>
+              <option>FIXED</option>
+              <option>PENDING_RETEST</option>
+              <option>RETEST</option>
+              <option>REOPEN</option>
+              <option>VERIFIED</option>
+              <option>CLOSED</option>
+              <option>REJECTED</option>
+              <option>DUPLICATE</option>
+              <option>DEFERRED</option>
+              <option>NOT_A_BUG</option>
+              <option>COULD_NOT_REPRODUCE</option>
+              <option>WONT_FIX</option>
+              <option>NEED_MORE_INFO</option>
             </select>
             <br />
             <label>ETA: <span style="color: red">*</span></label>
@@ -123,16 +131,17 @@
           >
             <label>Severity: <span style="color: red">*</span></label>
             <select
-              [(ngModel)]="severity"
+              [(ngModel)]="bug.severity"
               name="severity"
               id="severity"
               class="form-control"
               name="severity"
-              (change)="selectChangeSeverity(this.severity)"
             >
-              <option *ngFor="let name of severityKeys" [value]="name">
-                {{ severityEnum[name] }}
-              </option>
+              <option>LOW</option>
+              <option>MINOR</option>
+              <option>MAJOR</option>
+              <option>CRITICAL</option>
+              <option>BLOCKER</option>
             </select>
             <br />
             <label>Project ID: <span style="color: red">*</span></label>

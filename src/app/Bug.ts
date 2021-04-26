@@ -1,19 +1,14 @@
-import { PRIORITY } from './PRIORITY';
-import { TYPE } from './TYPE';
-import { STATUS } from './STATUS';
-import { SEVERITY } from './SEVERITY';
-
 export class Bug {
   id: any;
   name: String;
-  priority: PRIORITY;
+  priority: string = 'LOW';
   projectId: String;
   module: String;
-  type: TYPE;
-  status: STATUS;
+  type: string = 'SYNTAX';
+  status: string = 'NEW';
   eta: Date;
   buildVersion: String;
-  severity: SEVERITY;
+  severity: string = 'LOW';
   developerId: String;
   testerId: String;
   synopsis: String;

@@ -15,59 +15,13 @@ export class BugComponent implements OnInit {
   bug: Bug = new Bug(); //model
   ImgPath: string = './assets/bughawk.jpeg';
 
-  priority = null;
-  priorityEnum = PRIORITY;
-  priorityKeys = [];
-
-  status = null;
-  statusEnum = STATUS;
-  statusKeys = [];
-
-  type = null;
-  typeEnum = TYPE;
-  typeKeys = [];
-
-  severity = null;
-  severityEnum = SEVERITY;
-  severityKeys = [];
-
   constructor(private bugService: BugService) {
-    this.priorityKeys = Object.keys(this.priorityEnum).filter(
-      (f) => !isNaN(Number(f))
-    );
-    this.statusKeys = Object.keys(this.statusEnum).filter(
-      (f) => !isNaN(Number(f))
-    );
-    this.typeKeys = Object.keys(this.typeEnum).filter((f) => !isNaN(Number(f)));
-    this.severityKeys = Object.keys(this.severityEnum).filter(
-      (f) => !isNaN(Number(f))
-    );
   }
 
   bugArray: Bug[] = [];
   maxLengthSynopsis = 50;
   maxLengthDescription = 200;
   maxLengthName = 100;
-
-  selectChangePriority(value: string) {
-    this.priority = this.priorityEnum[value];
-    this.bug.priority = this.priority;
-  }
-
-  selectChangeType(value: string) {
-    this.type = this.typeEnum[value];
-    this.bug.type = this.type;
-  }
-
-  selectChangeStatus(value: string) {
-    this.status = this.statusEnum[value];
-    this.bug.status = this.status;
-  }
-
-  selectChangeSeverity(value: string) {
-    this.severity = this.severityEnum[value];
-    this.bug.severity = this.severity;
-  }
 
   create() {
     //method to create bug
@@ -83,7 +37,12 @@ export class BugComponent implements OnInit {
         this.bug = new Bug();
       },
       (error) => {
-        alert('Error occurred!');
+        if(error.statusText != 'OK'){
+          alert("Error! " + error.headers.get("error"));
+        }
+        else{
+          alert('Error occurred!');
+        }
       }
     );
   }
@@ -176,13 +135,5 @@ export class BugComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.priority = 0;
-    this.bug.priority = PRIORITY.LOW;
-    this.status = 0;
-    this.bug.status = STATUS.NEW;
-    this.type = 1;
-    this.bug.type = TYPE.SYNTAX;
-    this.severity = 0;
-    this.bug.severity = SEVERITY.LOW;
   }
 }
