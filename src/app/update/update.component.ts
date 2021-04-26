@@ -91,7 +91,12 @@ export class UpdateComponent implements OnInit {
         alert('Bug Updated!');
       },
       (error) => {
-        alert('Error occurred!');
+        if(error.statusText != 'OK'){
+          alert("Error! " + error.headers.get("error"));
+        }
+        else{
+          alert('Error occurred!');
+        }
       }
     );
   }

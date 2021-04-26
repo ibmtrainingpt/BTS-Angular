@@ -23,8 +23,8 @@ export class SearchbugComponent implements OnInit {
       this.getBugsByName(name); //if name is supplied
     } else if (status) {
       this.getBugsByStatus(status); //if status is supplied
-    } else {
-      this.bugService.getAllBugs();
+    } else{
+      this.getAllBugs();
     }
   }
 
@@ -35,7 +35,7 @@ export class SearchbugComponent implements OnInit {
       this.bugArray = response;
       if (this.bugArray[0] == undefined) {
         alert(
-          'No record found with name : ' + name + 'and status : ' + status + '!'
+          'No record found with name : ' + name + ' and status : ' + status + '!'
         );
       }
     });
@@ -60,6 +60,23 @@ export class SearchbugComponent implements OnInit {
     } else {
       alert('Please enter bug name.');
     }
+  }
+
+  getAllBugs() {
+    //method to retrieve bugs by name
+      const observable = this.bugService.getAllBugs();
+      observable.subscribe(
+        (response) => {
+          this.bugArray = response;
+          if (this.bugArray[0] == undefined) {
+            alert('No such record found!');
+          }
+        },
+        (error) => {
+          console.log(error);
+          alert('Error!');
+        }
+      );
   }
 
   getBugsByStatus(status: any) {

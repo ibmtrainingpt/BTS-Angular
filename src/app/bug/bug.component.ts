@@ -121,7 +121,7 @@ export class BugComponent implements OnInit {
       errorText += 'Please enter Project ID. \n';
     }
 
-    if (errorText != null) {
+    if (errorText != "") {
       alert('Errors are : \n' + errorText);
     }
   }
